@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7 lte9 lte8 lte7" lang="zh-cn"><![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8 lte9 lte8" lang="zh-cn"><![endif]-->
+<!--[if IE 9]>
+<html class="ie ie9 lte9" lang="zh-cn"><![endif]-->
+<!--[if gt IE 9]><!-->
+<html lang="zh-cn"><!--<![endif]-->
+
+<head dir="ltr">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>
+        本章测验 | 30240184X 课件 | 学堂在线
+    </title>
+
+</head>
+
+<body class="ltr courseware  lang_zh-cn">
+
+<button class="chatboxBtn btn btn-box-tool fl" data-toggle="tooltip"><i class="fa fa-comments"></i></button>
+
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(".chatboxBtn").click(function () {
+        var left = $("#chatbox").css("left");
+        left = parseInt(left);
+        if (left < 0) {
+            $("#chatbox").animate({left: 0}, {duration: 'fast'});
+        } else {
+            $("#chatbox").animate({left: -503}, {duration: 'fast'});
+        }
+    });
+</script>
+
+
+<!-- 对话模块 -->
+<div id="qarobot"></div>
+
+<script src="./dist/qa-robot.js"></script>
+
+</body>
+
+
+</html>

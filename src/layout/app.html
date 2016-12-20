@@ -1,0 +1,61 @@
+<div id="chatbox">
+    <!-- DIRECT CHAT PRIMARY -->
+    <div class="box box-primary direct-chat direct-chat-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">正在查询：{{ temp_question }}</h3>
+            <div class="box-tools pull-right">
+                <a class="btn btn-box-tool" :class="{active:activeTabIndex==0}" @click="activeTabIndex=0"><i
+                        class="fa fa-pencil-square-o">作业</i></a>
+                <a class="btn btn-box-tool" :class="{active:activeTabIndex==1}" @click="activeTabIndex=1"><i
+                        class="fa fa-comment-o">论坛</i></a>
+                <a class="btn btn-box-tool" :class="{active:activeTabIndex==2}" @click="activeTabIndex=2"><i
+                        class="fa fa-cubes">综合</i></a>
+                <a class="btn btn-box-tool" :class="{active:activeTabIndex==3}" @click="activeTabIndex=3"><i
+                        class="fa fa-user-secret">AI-BOT</i></a>
+            </div>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            <!-- Conversations are loaded here -->
+            <div class="direct-chat-messages" id="direct-chat-messages" style="height:500px">
+                <!-- Message. Default to the left -->
+                <div class="direct-chat-msg {{ item.class }}" v-for="item in items" track-by="$index"
+                     v-if="activeTabIndex==item.index">
+                    <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-left" v-if="item.uid==0">{{ item.name }}</span>
+                        <span class="direct-chat-name pull-right" v-if="item.uid==1">{{ item.name }}</span>
+                    </div><!-- /.direct-chat-info -->
+                    <img class="direct-chat-img" src="/static/images/customer-service.jpg"
+                         v-if="item.uid==0 && item.index!=0" alt="message user image">
+                    <img class="direct-chat-img" src="/static/images/question.png" v-if="item.uid==0 && item.index==0"
+                         alt="message user image">
+                    <img class="direct-chat-img" src="/static/images/boy.jpg" v-if="item.uid==1"
+                         alt="message user image">
+                    <div class="direct-chat-text" style="word-break:break-all;">
+                        <div v-if="item.class.search('left forum')!=-1" v-for="message in item.message"
+                             track-by="$index">
+                            <div v-if="$index+1 == item.message.length" v-show="!item.fold">
+                                {{ message }}<br>
+                            </div>
+                            <div v-if="$index+1 != item.message.length" :class="folder($index, item)"
+                                 @click="getFolder(this, item)">
+                                {{ message }}<br>
+                            </div>
+                        </div>
+                        <div v-if="item.class.search('left forum')==-1" v-for="message in item.message"
+                             track-by="$index">{{ message }}<br></div>
+                    </div>
+                </div><!-- /.direct-chat-msg -->
+            </div><!--/.direct-chat-messages-->
+
+
+        </div><!-- /.box-body -->
+        <div class="box-footer">
+            <div class="input-group">
+                <input type="text" name="question" class="form-control" v-model="question" @keyup.enter="getAnswer">
+                <span class="input-group-btn">
+                            <button type="button" class="btn btn-primary btn-flat" @click="getAnswer">Send</button>
+                        </span>
+            </div>
+        </div><!-- /.box-footer-->
+    </div><!--/.direct-chat -->
+</div>
