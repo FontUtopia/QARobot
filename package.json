@@ -5,10 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --quiet --dev-tool --port 8088",
-    "build": "rm -rf static/* && webpack --progress --hide-modules --config webpack.production.js",
-    "publish": "npm run build && ./bin/upload",
-    "upload": "./bin/upload",
-    "online": "npm run build && ./bin/online"
+    "build": "rm -rf static/* && webpack --progress --hide-modules --config webpack.production.js"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
